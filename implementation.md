@@ -1,7 +1,7 @@
 # Using Pi-WRF To Answer Our Driving Question
 The following steps demonstrate how to use the Pi-WRF application to answer our driving question: What types of clothes should I take along for my vacation based on the weather forecast?
 
-## Step 1: Understand the Weather Data Problem Scenario**
+## Step 1: Understand the Weather Data Problem Scenario
 
 The first step is to present the weather scenario to the learners and
 help them see how it is connected to their daily lives. Helping to make
@@ -14,7 +14,7 @@ In this lesson, we are trying to use weather data to make predictions
 about the weather for the next XX days in order to be able to decide the
 best clothes to prepare and wear during these days.
 
-## Step 2: Brainstorm Question and Set Boundaries**
+## Step 2: Brainstorm Question and Set Boundaries
 
 ### 2.1 Brainstorm Driving Question**
 
@@ -36,7 +36,7 @@ these weather features. However, I suggest using just one feature per
 lesson.
 :::
 
-### 2.2 Setting Boundaries**
+### 2.2 Setting Boundaries
 
 #### <u>Decide location:</u>
 
@@ -127,7 +127,7 @@ The model might take some minutes while running!
 :::
 <img src="images/run_model.png" style="width:6.5in;height:1.63889in" />
 
-**Step 4: Visualize Model Outputs**
+## Step 5: Visualize Model Outputs
 
 These steps assume you already have the application running on a
 Raspberry Pi or local computer running. Running WRF in step 3.3 above
@@ -159,13 +159,13 @@ Sample Outputs:
 
 <img src="images/rainfall.png" style="width:3.27134in;height:4.11504in" /><img src="images/windspeed.png" style="width:3.35243in;height:4.0942in" />
 
-## Step 5: Answer Your Driving Question**
+## Step 6: Answer Your Driving Question**
 
 Using your weather plots, you will need to answer your driving question
 and decide the types of clothes you will need to make provision for
 based on the weather forecasts you just analyzed.
 
-## Step 6: Tell Your Weather Story:**
+## Step 7: Tell Your Weather Story:**
 
 Now is the time to get creative and tell your weather story! Using your
 weather predictions, plots and vacation plans you can now tell a story
