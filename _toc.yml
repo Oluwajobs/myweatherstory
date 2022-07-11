@@ -1,0 +1,13 @@
+# My Weather Story: Table of contents
+# Contributors: Agbeli Ameko, Keith Maull, Ibrahim Oluwajoba Adisa
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: lesson-overview
+- file: driving-question
+- file: implementation
+- file: vocabulary
+- url: https://github.com/oluwajobs/piwrf-teachingbox
+  title: Github Version

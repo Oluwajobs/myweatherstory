@@ -1,0 +1,796 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Using Pi-WRF To Answer Our Driving Question &#8212; My Weather Story</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vocabulary:" href="vocabulary.html" />
+    <link rel="prev" title="Scenario:" href="driving-question.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My Weather Story</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lesson-overview.html">
+   Lesson Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="driving-question.html">
+   Scenario:
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Using Pi-WRF To Answer Our Driving Question
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vocabulary.html">
+   Vocabulary:
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/oluwajobs/piwrf-teachingbox">
+   Github Version
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fimplementation.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/implementation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-understand-the-weather-data-problem-scenario">
+   Step 1: Understand the Weather Data Problem Scenario**
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-brainstorm-question-and-set-boundaries">
+   Step 2: Brainstorm Question and Set Boundaries**
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brainstorm-driving-question">
+     2.1 Brainstorm Driving Question**
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-boundaries">
+     2.2 Setting Boundaries**
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-decide-location-u">
+       <u>
+        Decide location:
+       </u>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-decide-date-and-time-range-u">
+       <u>
+        Decide date and time range:
+       </u>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-launch-pi-wrf">
+   Step 3: Launch Pi-WRF
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-download-and-install-docker-on-your-raspberry-pi-u">
+     3.1
+     <u>
+      Download and install docker on your Raspberry pi
+     </u>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-launch-the-application-u">
+     3.2
+     <u>
+      Launch the application
+     </u>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-initiate-model">
+   Step 4: Initiate Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-load-and-import-all-necessary-libraries-u">
+     4.1
+     <u>
+      Load and import all necessary libraries
+     </u>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-select-domain-u">
+     4.2
+     <u>
+      Select Domain
+     </u>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-select-date-and-time-range-u">
+     4.3
+     <u>
+      Select Date and Time Range
+     </u>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-run-the-model-u">
+     4.4
+     <u>
+      Run the Model
+     </u>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-answer-your-driving-question">
+   Step 5: Answer Your Driving Question**
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-6-tell-your-weather-story">
+   Step 6: Tell Your Weather Story:**
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Using Pi-WRF To Answer Our Driving Question</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-understand-the-weather-data-problem-scenario">
+   Step 1: Understand the Weather Data Problem Scenario**
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-brainstorm-question-and-set-boundaries">
+   Step 2: Brainstorm Question and Set Boundaries**
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brainstorm-driving-question">
+     2.1 Brainstorm Driving Question**
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-boundaries">
+     2.2 Setting Boundaries**
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-decide-location-u">
+       <u>
+        Decide location:
+       </u>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-decide-date-and-time-range-u">
+       <u>
+        Decide date and time range:
+       </u>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-launch-pi-wrf">
+   Step 3: Launch Pi-WRF
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-download-and-install-docker-on-your-raspberry-pi-u">
+     3.1
+     <u>
+      Download and install docker on your Raspberry pi
+     </u>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-launch-the-application-u">
+     3.2
+     <u>
+      Launch the application
+     </u>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-initiate-model">
+   Step 4: Initiate Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-load-and-import-all-necessary-libraries-u">
+     4.1
+     <u>
+      Load and import all necessary libraries
+     </u>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-select-domain-u">
+     4.2
+     <u>
+      Select Domain
+     </u>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-select-date-and-time-range-u">
+     4.3
+     <u>
+      Select Date and Time Range
+     </u>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#u-run-the-model-u">
+     4.4
+     <u>
+      Run the Model
+     </u>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-answer-your-driving-question">
+   Step 5: Answer Your Driving Question**
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-6-tell-your-weather-story">
+   Step 6: Tell Your Weather Story:**
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="using-pi-wrf-to-answer-our-driving-question">
+<h1>Using Pi-WRF To Answer Our Driving Question<a class="headerlink" href="#using-pi-wrf-to-answer-our-driving-question" title="Permalink to this headline">#</a></h1>
+<p>The following steps demonstrate how to use the Pi-WRF application to answer our driving question: What types of clothes should I take along for my vacation based on the weather forecast?</p>
+<section id="step-1-understand-the-weather-data-problem-scenario">
+<h2>Step 1: Understand the Weather Data Problem Scenario**<a class="headerlink" href="#step-1-understand-the-weather-data-problem-scenario" title="Permalink to this headline">#</a></h2>
+<p>The first step is to present the weather scenario to the learners and
+help them see how it is connected to their daily lives. Helping to make
+real world connections is very important in this step and a good
+scenario could set the tone. Teachers can use different relevant
+real-life examples to help learners make the necessary connections
+between weather forecasting and their society.</p>
+<p>In this lesson, we are trying to use weather data to make predictions
+about the weather for the next XX days in order to be able to decide the
+best clothes to prepare and wear during these days.</p>
+</section>
+<section id="step-2-brainstorm-question-and-set-boundaries">
+<h2>Step 2: Brainstorm Question and Set Boundaries**<a class="headerlink" href="#step-2-brainstorm-question-and-set-boundaries" title="Permalink to this headline">#</a></h2>
+<section id="brainstorm-driving-question">
+<h3>2.1 Brainstorm Driving Question**<a class="headerlink" href="#brainstorm-driving-question" title="Permalink to this headline">#</a></h3>
+<p>The next step is to brainstorm the driving question with your learners
+and decide the best way you think the question should be answered. By
+taking a quick glance at the data, you will be able to determine the
+different features or variables that are available to you. There are six
+(6) main components of weather including: temperature, atmospheric
+pressure, wind, humidity, precipitation, and cloudiness. Together with
+your students, you will need to decide which of these components will be
+used to answer your research question.</p>
+<p>In this lesson, I will be using temperature forecasts to answer my
+driving question.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The WRF model that we will be using makes predictions for all
+these weather features. However, I suggest using just one feature per
+lesson.</p>
+</div>
+</section>
+<section id="setting-boundaries">
+<h3>2.2 Setting Boundaries**<a class="headerlink" href="#setting-boundaries" title="Permalink to this headline">#</a></h3>
+<section id="u-decide-location-u">
+<h4><u>Decide location:</u><a class="headerlink" href="#u-decide-location-u" title="Permalink to this headline">#</a></h4>
+<p>Before you start using the WRF model to make forecasts, you will need to
+decide on a location (also known as domain) you want to explore. Decide
+this with your learners and take note of the latitude and longitude of
+the location you chose.</p>
+<p>In this lesson, I will be making a weather forecast for the City of
+Boulder, Colorado with latitude and longitude of 40.0150 and -105.2705
+respectively.</p>
+</section>
+<section id="u-decide-date-and-time-range-u">
+<h4><u>Decide date and time range:</u><a class="headerlink" href="#u-decide-date-and-time-range-u" title="Permalink to this headline">#</a></h4>
+<p>Next you will need to decide the date and time range you intend to make
+a weather forecast for. At the moment, the WRF model can make accurate
+weather predictions for 7 to 10 days.</p>
+</section>
+</section>
+</section>
+<section id="step-3-launch-pi-wrf">
+<h2>Step 3: Launch Pi-WRF<a class="headerlink" href="#step-3-launch-pi-wrf" title="Permalink to this headline">#</a></h2>
+<section id="u-download-and-install-docker-on-your-raspberry-pi-u">
+<h3>3.1 <u>Download and install docker on your Raspberry pi</u><a class="headerlink" href="#u-download-and-install-docker-on-your-raspberry-pi-u" title="Permalink to this headline">#</a></h3>
+<p>To use this application on your raspberry pi (or computer) you need to
+have docker installed. If you haven’t already done so you can install
+docker my opening a terminal and running the command below:</p>
+<p>curl -sSL <a class="reference external" href="https://get.docker.com">https://get.docker.com</a> | sh</p>
+</section>
+<section id="u-launch-the-application-u">
+<h3>3.2 <u>Launch the application</u><a class="headerlink" href="#u-launch-the-application-u" title="Permalink to this headline">#</a></h3>
+<p>After successfully installing docker, copy and paste the command below
+into your terminal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo docker run -it --rm --net=host -e DISPLAY -v
+\$HOME/.Xauthority:/root/.Xauthority ncar/pi-wrf
+</pre></div>
+</div>
+<p>When you enter the following command and execute it, Docker downloads
+the file for you and then launches the application. If you close the
+program, Docker will save the “file” so you do not have to download it
+the next time you run the application.</p>
+</section>
+</section>
+<section id="step-4-initiate-model">
+<h2>Step 4: Initiate Model<a class="headerlink" href="#step-4-initiate-model" title="Permalink to this headline">#</a></h2>
+<p>These steps assume you already have the application running on a
+Raspberry Pi or local computer running.</p>
+<section id="u-load-and-import-all-necessary-libraries-u">
+<h3>4.1 <u>Load and import all necessary libraries</u><a class="headerlink" href="#u-load-and-import-all-necessary-libraries-u" title="Permalink to this headline">#</a></h3>
+<p>Press <strong>Shift + Enter</strong> on your keyboard to run the provided import
+statements.</p>
+<img src="images/libraries.png" style="width:6.5in;height:1.11111in" />
+</section>
+<section id="u-select-domain-u">
+<h3>4.2 <u>Select Domain</u><a class="headerlink" href="#u-select-domain-u" title="Permalink to this headline">#</a></h3>
+<p>The default domain in the notebook is that of Boulder, Colorado. You can
+modify this to your desired location by carrying out either of the
+following:</p>
+<ol class="simple">
+<li><p>Enter your own preferred domain in the cell box and run it, or</p></li>
+<li><p>Run the cell as it is, wait till it outputs a map widget and move the blue marker to your desired location.</p></li>
+</ol>
+<img src="images/domain.png" style="width:6.5in;height:3.77778in" />
+</section>
+<section id="u-select-date-and-time-range-u">
+<h3>4.3 <u>Select Date and Time Range</u><a class="headerlink" href="#u-select-date-and-time-range-u" title="Permalink to this headline">#</a></h3>
+<p>Modify the start/end dates and start/end times to reflect the decisions
+you made in step 2.2 above. The default dates and times in the notebook
+are set to your current date and time respectively. Confirm your
+selection by pressing <strong>Shift + Enter</strong> on your keyboard.</p>
+<img src="images/date_time.png" style="width:6.5in;height:4.15278in" />
+<p>After specifying your start date and end dates, run the cells that
+follow till you get to the “Initiate Model” cell.</p>
+</section>
+<section id="u-run-the-model-u">
+<h3>4.4 <u>Run the Model</u><a class="headerlink" href="#u-run-the-model-u" title="Permalink to this headline">#</a></h3>
+<p>Now it is time to run the model by running the “Initiate Model” cells.
+After the model finishes running it generates various weather conditions
+outputs that you can visualize in the steps that follow.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The model might take some minutes while running!</p>
+</div>
+<img src="images/run_model.png" style="width:6.5in;height:1.63889in" />
+<p><strong>Step 4: Visualize Model Outputs</strong></p>
+<p>These steps assume you already have the application running on a
+Raspberry Pi or local computer running. Running WRF in step 3.3 above
+outputs different weather graphs/visuals (approximately 7000!) and
+stores them in the <strong>~/../pi-wrf/Output</strong> directory.</p>
+<p>You can list the output file names using the terminal command <strong>ls</strong> (this is already entered in the notebook).</p>
+<img src="images/model_output.png" style="width:6.5in;height:2.23611in" />
+<p>Finally, to visualize any plot of interest, use the image library and
+the file name as shown in the code block below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;name-of-file.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img src="images/image_hourly_temperature_01.png" style="width:3.3125in;height:0.3125in" /><img src="images/image_hourly_temperature_04.png" style="width:3.36979in;height:0.32274in" /></p>
+<p><img src="images/image_hourly_rain_cmd.png" style="width:3.35938in;height:0.36806in" /><img src="images/image_hourly_wind_cmd.png" style="width:3.33854in;height:0.36987in" /></p>
+<p>In this lesson, I will be visualizing the hourly temperature plots since
+I already decided that I was going to tell my weather story using
+temperature forecasts. However, I included a variety of outputs here to provide some clues about the various weather plots WRF can provide.</p>
+<p>Sample Outputs:</p>
+<p><img src="images/surface_temperature_01.png" style="width:3.08773in;height:3.86413in" /><img src="images/surface_temperature_04.png" style="width:2.9789in;height:3.83379in" /></p>
+<p><img src="images/rainfall.png" style="width:3.27134in;height:4.11504in" /><img src="images/windspeed.png" style="width:3.35243in;height:4.0942in" /></p>
+</section>
+</section>
+<section id="step-5-answer-your-driving-question">
+<h2>Step 5: Answer Your Driving Question**<a class="headerlink" href="#step-5-answer-your-driving-question" title="Permalink to this headline">#</a></h2>
+<p>Using your weather plots, you will need to answer your driving question
+and decide the types of clothes you will need to make provision for
+based on the weather forecasts you just analyzed.</p>
+</section>
+<section id="step-6-tell-your-weather-story">
+<h2>Step 6: Tell Your Weather Story:**<a class="headerlink" href="#step-6-tell-your-weather-story" title="Permalink to this headline">#</a></h2>
+<p>Now is the time to get creative and tell your weather story! Using your
+weather predictions, plots and vacation plans you can now tell a story
+about how your vacation plans and clothes were shaped by your
+forecasting. Teachers can engage learners in this activity in a variety
+of ways. For example, kids could tell a picture story, Draw infographics
+or create a video.</p>
+<p>In this lesson, I have chosen to tell my weather story using the
+infographic below.</p>
+<img src="images/my_weather_story.gif" style="width:6.5in;height:3.25in" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="driving-question.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Scenario:</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="vocabulary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Vocabulary:</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Ibrahim Oluwajoba Adisa<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
