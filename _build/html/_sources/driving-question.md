@@ -1,4 +1,4 @@
-## Scenario:
+# Scenario:
 
 It’s not easy to dress well in unusual weather conditions, even though
 your wardrobe is filled with multiple items. Imagine you are going on a
@@ -14,7 +14,7 @@ make weather forecast and answer the following driving question:
 
 -   How can I use weather data to decide the most suitable clothes to take along for my vacation?
 
-### Driving Question:
+## Driving Question:
 
 > What types of clothes should I take along for my vacation based on the weather forecast?
 
