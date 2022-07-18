@@ -6,7 +6,7 @@
 
 **Estimated Time:** 40 - 45 Minutes
 
-| Standards Addressed |             |
+**Standards Addressed**             
 |---------------------|-------------|
 | MS - ESS2-5         | HS - ESS2-4 |
 | MS - ESS2-6         | HS - ESS3-5 |
@@ -43,10 +43,9 @@ lesson, learners will be able to:
 1.  use weather datasets and the WRF model to answer real world
     questions.
 
-2.  apply data science practices (data understanding, analysis,
-    visualization, and communication) to tell a weather story.
+2.  apply data science practices (data understanding, analysis, visualization, and communication) to tell a weather story.
 
-3.  Analyze and reflect on the social impact of weather forecasting
+3.  analyze and reflect on the social impact of weather forecasting
 
 ## Preparation Materials/Resources
 
