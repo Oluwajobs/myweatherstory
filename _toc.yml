@@ -4,25 +4,24 @@
 
 format: jb-book
 root: intro
-parts:
-  chapters:
-    - file: lesson-overview
-    - file: driving-question
-    - file: implementation
-    sections:
-      - title: "Step 2: Brainstorm Question and Set Boundaries"
-        file: implementation/step-2
-      - title: Launch Pi-WRF
-        file: implementation/step-3 
-      - title: Initiate Model
-        file: implementation/step-4 
-      - title: Visualize Model Outputs
-        file: implementation/step-5 
-      - title: Answer Your Driving Question
-        file: implementation/step-6 
-      - title: Tell Your Weather Story
-        file: implementation/step-7 
-    - file: vocabulary
-    - url: https://github.com/oluwajobs/piwrf-teachingbox
-      title: Github Version
+chapters:
+- file: lesson-overview
+- file: driving-question
+- file: implementation
+  sections:
+    - file: implementation/step-2
+      title: "Step 2: Brainstorm Question and Set Boundaries"
+    - file: implementation/step-3 
+      title: "Step 3: Launch Pi-WRF"
+    - file: implementation/step-4 
+      title: "Step 4: Initiate Model"
+    - file: implementation/step-5 
+      title: "Step 5: Visualize Model Outputs"
+    - file: implementation/step-6 
+      title: "Step 6: Answer Your Driving Question"
+    - file: implementation/step-7 
+      title: "Step 7: Tell Your Weather Story"
+- file: vocabulary
+- url: https://github.com/oluwajobs/piwrf-teachingbox
+  title: Github Version
       
