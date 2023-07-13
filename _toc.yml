@@ -21,7 +21,7 @@ chapters:
       title: "Step 6: Answer Your Driving Question"
     - file: implementation/step-7 
       title: "Step 7: Tell Your Weather Story"
-- file: vocabulary
+- file: next-steps
 - url: https://github.com/oluwajobs/piwrf-teachingbox
   title: Github Version
       
