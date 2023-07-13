@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lesson-overview.html">Lesson Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="driving-question.html">Scenario:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="driving-question.html">Scenario</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="implementation.html">Using Pi-WRF To Answer Our Driving Question</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="implementation/step-2.html">Step 2: Brainstorm Question and Set Boundaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="implementation/step-3.html">Step 3: Launch Pi-WRF</a></li>
@@ -167,8 +167,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="implementation/step-7.html">Step 7: Tell Your Weather Story</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="vocabulary.html">Vocabulary:</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="next-steps.html">What Next?</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/oluwajobs/piwrf-teachingbox">Github Version</a></li>
 </ul>
 
@@ -340,7 +339,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -356,6 +357,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vocabulary">Vocabulary:</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -367,9 +376,27 @@ document.write(`
                   
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
-<p>This is a sample lesson on how you can use the Pi-WRF application to teach learners about weather forecasting and its real world application. I hope this will inspire you to create, teach and share your own lessons about weather and the atmosphere using the weather Research and Forecasting (WRF) model on micro-computers like the Raspberry Pi.</p>
+<p>This is a sample lesson on how you can use the Pi-WRF application to teach learners about weather forecasting and its real world application. I hope this will inspire you to create, teach and share your own lessons about weather and the atmosphere using the Weather Research and Forecasting (WRF) model on micro-computers like the Raspberry Pi.</p>
 <p>You can explore similar lessons others have created on the <a class="reference external" href="https://ncar.github.io/teaching-boxes">Pi-WRF Teaching Boxes page</a>. For support and more information on Pi-WRF visit the <a class="reference external" href="https://ncar.github.com/pi-wrf">NCAR Pi-WRF repository</a> repository.</p>
 <p>Now let’s dive into the lesson. Click the “Lesson Overview” button to begin.</p>
+<section id="vocabulary">
+<h2>Vocabulary:<a class="headerlink" href="#vocabulary" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Supercomputers:</strong>
+A supercomputer is an incredibly fast and powerful computer that helps scientists and researchers solve complex problems and analyze large amounts of data more quickly and efficiently than regular computers. Visit the <a class="reference external" href="https://www.ibm.com/topics/supercomputing">IBM Supercomputing website</a> to learn more about supercomputers.</p></li>
+<li><p><strong>Raspberry Pi:</strong>
+A low cost micro-controller that plugs into a screen
+and uses a standard keyboard and mouse. Visit the <a class="reference external" href="https://www.raspberrypi.org">Raspberry Pi website</a> to learn more.</p></li>
+<li><p><strong>Weather Research and Forecasting (WRF) Model:</strong>
+The WRF model is a computer program that uses lots of information like temperature, humidity, wind speed, and air pressure to  predict the weather. Learn more about WRF <a class="reference external" href="https://www.mmm.ucar.edu/models/wrf">here</a>.</p></li>
+<li><p><strong>Forecasting:</strong>
+The process of estimating or predicting future events
+(e.g., rain, traffic, stock)</p></li>
+<li><p><strong>Domain:</strong>
+The geographical area you want to make a weather forecast
+about.</p></li>
+</ul>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -423,6 +450,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vocabulary">Vocabulary:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

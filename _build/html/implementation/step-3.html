@@ -158,7 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../lesson-overview.html">Lesson Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../driving-question.html">Scenario:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving-question.html">Scenario</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../implementation.html">Using Pi-WRF To Answer Our Driving Question</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="step-2.html">Step 2: Brainstorm Question and Set Boundaries</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Step 3: Launch Pi-WRF</a></li>
@@ -168,8 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="step-7.html">Step 7: Tell Your Weather Story</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../vocabulary.html">Vocabulary:</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../next-steps.html">What Next?</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/oluwajobs/piwrf-teachingbox">Github Version</a></li>
 </ul>
 
@@ -366,6 +365,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-install-docker-on-your-raspberry-pi">3.1 Download and install docker on your Raspberry pi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-the-application">3.2 Launch the application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-notebook">3.3 Open the Notebook</a></li>
 </ul>
             </nav>
         </div>
@@ -379,27 +379,32 @@ document.write(`
                   
   <section id="step-3-launch-pi-wrf">
 <h1>Step 3: Launch Pi-WRF<a class="headerlink" href="#step-3-launch-pi-wrf" title="Permalink to this heading">#</a></h1>
+<script async id="asciicast-BhZcW5ATh10bJIbxEpYJpvAC6" src="https://asciinema.org/a/BhZcW5ATh10bJIbxEpYJpvAC6.js?speed=2&i=8"></script>
 <section id="download-and-install-docker-on-your-raspberry-pi">
 <h2>3.1 Download and install docker on your Raspberry pi<a class="headerlink" href="#download-and-install-docker-on-your-raspberry-pi" title="Permalink to this heading">#</a></h2>
 <p>To use this application on your raspberry pi (or computer) you need to
-have docker installed. If you haven’t already done so you can install
-docker my opening a terminal and running the command below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">get</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span> \<span class="o">|</span> <span class="n">sh</span>
+have docker installed. You can install
+docker by opening your terminal and running the command below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">get</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">|</span> <span class="n">sh</span>
 </pre></div>
 </div>
+<p>Executing the command above installs the latest stable version of Docker CLI, Docker Engine, and their dependencies on your device.</p>
+<p>Once Docker is installed, you need to start the Docker application to proceed to the next step.</p>
 </section>
 <section id="launch-the-application">
 <h2>3.2 Launch the application<a class="headerlink" href="#launch-the-application" title="Permalink to this heading">#</a></h2>
 <p>After successfully installing docker, copy and paste the command below
 into your terminal.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo docker run -it --rm --net=host -e DISPLAY -v
-\$HOME/.Xauthority:/root/.Xauthority ncar/pi-wrf
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="n">ncar</span><span class="o">/</span><span class="n">pi</span><span class="o">-</span><span class="n">wrf</span>
 </pre></div>
 </div>
-<p>When you enter the following command and execute it, Docker downloads
-the file for you and then launches the application. If you close the
-program, Docker will save the “file” so you do not have to download it
-the next time you run the application.</p>
+<p>Executing this command pulls the ncar/pi-wrf docker image and runs an instance of the Pi-WRF notebook as a container in a non-persistant state (any changes to the notebook will not be saved) on your device.</p>
+<p>For information on how to run and persit changes made in the notebook, please NCAR’s <a class="reference external" href="https://github.com/NCAR/pi-wrf">Pi-WRF Github</a> page.</p>
+</section>
+<section id="open-the-notebook">
+<h2>3.3 Open the Notebook<a class="headerlink" href="#open-the-notebook" title="Permalink to this heading">#</a></h2>
+<p>After the Docker container starts, some URLs appears in the terminal. You will need to copy and paste the one of the URL that starts with <em>http://127.0.0.1:8888</em> into your browser.</p>
+<p>Entering the URL will open a locally hosted instance of Jupyter Notebook. You should select the Pi-WRF.ipynb notebook which will open in a new tab. The notebook provides instructions for selecting the domain and the datetime range for the model which we will explore in the next step.</p>
 </section>
 </section>
 
@@ -472,6 +477,7 @@ the next time you run the application.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-install-docker-on-your-raspberry-pi">3.1 Download and install docker on your Raspberry pi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-the-application">3.2 Launch the application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-notebook">3.3 Open the Notebook</a></li>
 </ul>
   </nav></div>
 

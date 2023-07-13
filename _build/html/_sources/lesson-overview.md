@@ -6,12 +6,13 @@
 
 **Estimated Time:** 40 - 45 Minutes
 
-**Standards Addressed**             
-|---------------------|-------------|
+**NGSS Standards Addressed**             
+|Middle School|High School|
+|----|----|
 | MS - ESS2-5         | HS - ESS2-4 |
 | MS - ESS2-6         | HS - ESS3-5 |
 
-## Weather Forecasting
+### Weather Forecasting
 
 The weather plays a critical role in every aspect of human life. Hence,
 scientists have made efforts over the years to improve human’s ability
@@ -23,7 +24,7 @@ Weather Forecasting is done by using supercomputers to collect and
 process large amounts of data about the atmosphere and applying
 scientific models to make informed decisions from the data.
 
-## Why Predict The Weather?
+### Why Predict The Weather?
 
 The ultimate goal of weather forecasting is to protect humans and
 improve our quality of life by using data about the atmosphere to make
@@ -34,7 +35,7 @@ Forecasting (WRF) model on a Raspberry Pi. You will use this prediction
 to answer a question you care about and share your weather story with
 the others.
 
-## Purpose and Objective
+### Purpose and Objective
 
 The objective of this lesson is to introduce students to weather
 forecasting and model simulation using the wrf model. At the end of the
@@ -47,8 +48,17 @@ lesson, learners will be able to:
 
 3.  analyze and reflect on the social impact of weather forecasting
 
-## Preparation Materials/Resources
+### Preparation Materials/Resources
 
--   RaspberryPi 3+ or higher, with monitor and keyboard
+- RaspberryPi 3+ or higher, with monitor and keyboard (or a laptop)
+- Internet connection to download weather data
 
--   Internet connection to download weather data
+### Definitions
+
+- MS - ESS2-5: Using weather data to explore changes in weather conditions due to air masses motion and interaction.
+
+- HS - ESS2-4: Use models to describe how variations in energy flow affect climate
+
+- MS - ESS2-6: Develop and use a model to describe unequal heating and rotation of the earth determines regional climate change.
+
+- HS - ESS3-5: Analyze geoscience data and use results from global climate models to make forecast. 
