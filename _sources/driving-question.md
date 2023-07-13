@@ -1,4 +1,4 @@
-# Scenario:
+# Scenario
 
 It’s not easy to dress well in unusual weather conditions, even though
 your wardrobe is filled with multiple items. Imagine you are going on a
