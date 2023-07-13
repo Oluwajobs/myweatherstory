@@ -7,7 +7,8 @@
 **Estimated Time:** 40 - 45 Minutes
 
 **Standards Addressed**             
-|---------------------|-------------|
+|Middle School|High School|
+|----|----|
 | MS - ESS2-5         | HS - ESS2-4 |
 | MS - ESS2-6         | HS - ESS3-5 |
 
